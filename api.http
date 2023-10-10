@@ -1,0 +1,37 @@
+GET http://localhost:3000/projects
+
+###
+GET http://localhost:3000/projects/671cfbfa-e5a9-4824-bee0-303342775e32
+
+###
+# @name createProject
+POST http://localhost:3000/projects
+Content-Type: application/json
+
+{
+    "name": "Project 1",
+    "description": "Description 1"
+}
+
+###
+@project_id = {{createProject.response.body.id}}
+
+###
+PATCH http://localhost:3000/projects/{{project_id}}
+Content-Type: application/json
+
+{
+    "name": "Project 1 updated",
+    "description": "Description 1 updated",
+    "started_at": "2020-01-01"
+}
+
+###
+POST http://localhost:3000/projects/{{project_id}}/start
+Content-Type: application/json
+
+{
+    "started_at": "2020-01-01"
+}
+
+//DDD vs Clean Arch 
